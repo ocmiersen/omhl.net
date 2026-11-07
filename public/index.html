@@ -97,11 +97,12 @@ h1 {
 
 /* the rack */
 .rack {
+  /* explicit width from the photo's proportions, so every browser gives the rack its column */
+  --rack-h: clamp(560px, 84vh, 900px);
   position: relative;
   isolation: isolate;
-  height: clamp(560px, 84vh, 900px);
-  aspect-ratio: 1248 / 2550;
-  max-width: 100%;
+  height: var(--rack-h);
+  width: calc(var(--rack-h) * 1248 / 2550);
 }
 .rack img {
   position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none;
@@ -262,6 +263,7 @@ footer { border-top: 1px solid var(--line); padding-block: 28px calc(28px + env(
   .intro > .eyebrow, .intro > h1, .intro > .lede { order: 1; }
   .intro > .eyebrow { margin-bottom: -12px; }
   .rack { order: 2; height: auto; width: min(100%, 420px); justify-self: center; margin-bottom: 40px; }
+  .rack img { position: relative; height: auto; }   /* in flow here, so the photo sets the rack's height */
   .intro > div:last-child { display: none; }
   .leader { display: none; }
   .dock { position: static; }
